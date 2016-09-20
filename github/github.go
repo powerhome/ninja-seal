@@ -1,22 +1,34 @@
 package github
 
 import (
+	"bytes"
+	"encoding/json"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
+	"github.com/google/go-github/github"
 )
 
-type PullRequest struct {
-	Title string `json:"title"`
+func client() *http.Client {
+	transport := &github.BasicAuthTransport{
+		Username: "drborges",
+		Password: "dbbbb25ef4dfce434719d82c47ad5dc32af96532",
+	}
+
+	return transport.Client()
 }
 
-type PullRequestEvent struct {
-	Action      string      `json:"action"`
-	PullRequest PullRequest `json:"pull_request"`
-}
-
+// Webhook LOL
 func Webhook(c *gin.Context) {
-	var payload PullRequestEvent
+	var payload github.PullRequestEvent
 
 	if c.BindJSON(&payload) == nil {
-		c.JSON(200, gin.H{"pr_title": payload.PullRequest.Title})
+		body := map[string]string{
+			"state":   "pending",
+			"context": "Ninja Approval Seal",
+		}
+
+		strB, _ := json.Marshal(body)
+		client().Post(*payload.PullRequest.StatusesURL, "application/json", bytes.NewReader(strB))
 	}
 }
