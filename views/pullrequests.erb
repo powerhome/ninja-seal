@@ -1,13 +1,19 @@
 Hey PRs!
 
-<ul>
-<% prs.each do |pr|%>
-  <li>
-    <%= "#{pr[:title]}"  %>
-    <form action="<%= "/powerhome/ninja-seal/#{pr[:sha]}/status" %>" method="POST">
-      <input type="hidden" name="status" value="success" />
-      <input type="submit" value="Accept" />
-    </form>
-  </li>
-<% end %>
-</ul>
+<form method="POST">
+  <ul>
+  <% prs.each do |pr|%>
+    <li>
+      <%= "#{pr[:title]}"  %>
+        <button type="submit"
+          formaction="<%= "/powerhome/ninja-seal/#{pr[:sha]}/status" %>"
+          name="status"
+          value="success">Accept</button>
+        <button type="submit"
+          formaction="<%= "/powerhome/ninja-seal/#{pr[:sha]}/status" %>"
+          name="status"
+          value="failure">Reject</button>
+    </li>
+  <% end %>
+  </ul>
+</form>
