@@ -6,11 +6,11 @@ Hey PRs!
     <li>
       <%= "#{pr[:title]}"  %>
         <button type="submit"
-          formaction="<%= "/powerhome/ninja-seal/#{pr[:sha]}/status" %>"
+          formaction="<%= "/#{repository}/#{pr[:sha]}/status" %>"
           name="status"
           value="success">Accept</button>
         <button type="submit"
-          formaction="<%= "/powerhome/ninja-seal/#{pr[:sha]}/status" %>"
+          formaction="<%= "/#{repository}/#{pr[:sha]}/status" %>"
           name="status"
           value="failure">Reject</button>
     </li>

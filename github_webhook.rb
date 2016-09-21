@@ -26,5 +26,19 @@ module NinjaSeal
       })
       200
     end
+
+    def self.open_pull_requests(repository)
+      pull_requests = []
+      Octokit.pull_requests(repository, status: 'open').each do |pr|
+        statuses = Octokit.combined_status(repository, pr[:head][:sha])[:statuses]
+        status = statuses.select{ |st| st[:context] == 'ninja-seal' }
+
+        pull_request = {title: pr[:title], sha: pr[:head][:sha] }
+        pull_request.merge({ status: status.state }) if !status.empty?
+
+        pull_requests << pull_request
+      end
+      pull_requests
+    end
   end
 end
