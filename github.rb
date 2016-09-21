@@ -19,9 +19,11 @@ module NinjaSeal
       200
     end
 
-    post '/:org/:repo/:sha/status' do
-      repository = "#{params[:org]}/#{params[:repo]}"
-      Octokit.client.create_status(repository, params[:sha], params[:status], {
+    post '/stories/:story_id/status' do
+      repository = 'powerhome/ninja-seal'
+      pr_list = Github.open_pull_requests(repository)
+      pr = pr_list.find { |pr| pr[:title].include?(params[:story_id]) }
+      Octokit.client.create_status(repository, pr[:sha], params[:status], {
         context: NINJA_CONTEXT
       })
       200
