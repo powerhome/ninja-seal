@@ -2,6 +2,7 @@ require 'sinatra'
 require 'json'
 require 'byebug'
 require 'rack/parser'
+require 'dotenv'
 require './github_webhook'
 
 module NinjaSeal

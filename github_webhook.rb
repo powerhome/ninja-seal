@@ -1,8 +1,8 @@
 require 'octokit'
 
 Octokit.configure do |c|
-  c.login = 'xjunior'
-  c.password = '46fbd65e1df9d86301f75f2b66a780194d91e197'
+  c.login = ENV['GITHUB_LOGIN']
+  c.password = ENV['GITHUB_KEY']
 end
 
 module NinjaSeal
