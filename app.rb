@@ -1,12 +1,19 @@
 require 'sinatra'
-require './github'
+require 'rack/parser'
+require './github_webhook'
 
-class NinjaSeal < Sinatra::Base
-  use GithubApp
+module NinjaSeal
+  class App < Sinatra::Base
+    use Rack::Parser, content_types: {
+      'application/json' => JSON.method(:parse)
+    }
 
-  post '/webhooks/tracker' do
-    'Put this in your pipe & smoke it!'
+    use GithubWebhook
+
+    post '/webhooks/tracker' do
+      'Put this in your pipe & smoke it!'
+    end
+
+    run!
   end
-
-  run!
 end

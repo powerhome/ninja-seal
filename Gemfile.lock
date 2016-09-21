@@ -9,6 +9,8 @@ GEM
     octokit (4.3.0)
       sawyer (~> 0.7.0, >= 0.5.3)
     rack (1.6.4)
+    rack-parser (0.7.0)
+      rack
     rack-protection (1.5.3)
       rack
     sawyer (0.7.0)
@@ -26,6 +28,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   octokit (~> 4.0)
+  rack-parser
   sinatra
 
 BUNDLED WITH
