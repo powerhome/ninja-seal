@@ -35,12 +35,6 @@ module NinjaSeal
       erb :stories, locals: { stories: stories, repository: repository }
     end
 
-    get '/pullrequests' do
-      repository = 'powerhome/ninja-seal'
-
-      erb :pullrequests, locals: {prs: pr_list, repository: repository}
-    end
-
     run!
   end
 end
