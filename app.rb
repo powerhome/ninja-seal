@@ -4,8 +4,8 @@ require 'byebug'
 require 'rack/parser'
 require 'dotenv'
 require 'tracker_api'
-require './github_webhook'
 require 'erubis'
+require './github'
 
 module NinjaSeal
   class App < Sinatra::Base
@@ -18,7 +18,7 @@ module NinjaSeal
       'application/json' => -> (data) { JSON.parse(data) }
     }
 
-    use GithubWebhook
+    use Github
 
     get '/stories' do
       items = []
@@ -32,7 +32,7 @@ module NinjaSeal
 
     get '/pullrequests' do
       repository = 'powerhome/ninja-seal'
-      pr_list = GithubWebhook.open_pull_requests(repository)
+      pr_list = Github.open_pull_requests(repository)
 
       erb :pullrequests, locals: {prs: pr_list, repository: repository}
     end

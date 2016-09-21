@@ -6,7 +6,7 @@ Octokit.configure do |c|
 end
 
 module NinjaSeal
-  class GithubWebhook < Sinatra::Base
+  class Github < Sinatra::Base
     NINJA_CONTEXT = 'Ninja Seal of Approval'.freeze
 
     post '/webhook/github' do
