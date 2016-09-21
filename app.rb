@@ -21,18 +21,11 @@ module NinjaSeal
     use Github
 
     get '/stories' do
-      repository = 'powerhome/ninja-seal'
-      stories = []
-      pr_list = Github.open_pull_requests(repository)
-      tracker.projects.each do |project|
-        project.stories(with_state: :finished).each do |story|
-          pr = pr_list.find { |pr| pr[:title].include?(story.id.to_s) }
-          if pr
-            stories << { id: story.id, title: story.name, state: story.current_state, pr: pr }
-          end
-        end
-      end
-      erb :stories, locals: { stories: stories, repository: repository }
+      stories = tracker.projects
+        .map{ |project| project.stories(with_state: :finished) }.flatten
+        .map{ |story| { id: story.id, title: story.name, state: story.current_state }}
+
+      erb :stories, locals: { stories: stories }
     end
 
     run!

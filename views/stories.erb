@@ -5,11 +5,11 @@
     <li>
       <%= "#{story[:title]}"  %>
         <button type="submit"
-          formaction="<%= "/#{repository}/#{story[:pr][:sha]}/status" %>"
+          formaction="<%= "/stories/#{story[:id]}/status" %>"
           name="status"
           value="success">Accept</button>
         <button type="submit"
-          formaction="<%= "/#{repository}/#{story[:pr][:sha]}/status" %>"
+          formaction="<%= "/stories/#{story[:id]}/status" %>"
           name="status"
           value="failure">Reject</button>
     </li>
