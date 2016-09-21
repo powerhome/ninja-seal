@@ -7,7 +7,7 @@ end
 
 module NinjaSeal
   class GithubWebhook < Sinatra::Base
-    NINJA_CONTEXT = 'Ninja Seal of Approval'
+    NINJA_CONTEXT = 'Ninja Seal of Approval'.freeze
 
     post '/webhook/github' do
       options = { context: NINJA_CONTEXT }
