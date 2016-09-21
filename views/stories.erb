@@ -1,5 +1,18 @@
-<ul>
-  <% items.each do |item| %>
-    <li><%= item[:title] %> | <%= item[:state] %> | <%= item[:id] %></li>
+
+<form method="POST">
+  <ul>
+  <% stories.each do |story|%>
+    <li>
+      <%= "#{story[:title]}"  %>
+        <button type="submit"
+          formaction="<%= "/#{repository}/#{story[:pr][:sha]}/status" %>"
+          name="status"
+          value="success">Accept</button>
+        <button type="submit"
+          formaction="<%= "/#{repository}/#{story[:pr][:sha]}/status" %>"
+          name="status"
+          value="failure">Reject</button>
+    </li>
   <% end %>
-</ul>
+  </ul>
+</form>
