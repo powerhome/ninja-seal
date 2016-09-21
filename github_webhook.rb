@@ -19,8 +19,12 @@ module NinjaSeal
       200
     end
 
-    post '/:repo/:sha/status/:status' do
-      # Octokit.client.create_statuses(params[:repo], params[:sha], params[:status], { context: NINJA_CONTEXT })
+    post '/:org/:repo/:sha/status' do
+      repository = "#{params[:org]}/#{params[:repo]}"
+      Octokit.client.create_status(repository, params[:sha], params[:status], {
+        context: NINJA_CONTEXT
+      })
+      200
     end
   end
 end
