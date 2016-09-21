@@ -20,7 +20,15 @@ module NinjaSeal
 
     use GithubWebhook
 
-    set :views, 'views'
+    get '/stories' do
+      items = []
+      tracker.projects.each do |project|
+        project.stories(with_state: :finished).each do |story|
+          items << { id: story.id, title: story.name, state: story.current_state }
+        end
+      end
+      erb :stories, locals: { items: items }
+    end
 
     get '/pullrequests' do
       pr_resource = Octokit.pull_requests('powerhome/ninja-seal', status: 'open')
