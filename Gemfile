@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
+gem 'erubis', '~> 2.7'
 gem 'rack-parser'
 gem 'dotenv'
 gem "octokit", "~> 4.0"

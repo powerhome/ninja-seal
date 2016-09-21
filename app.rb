@@ -3,10 +3,17 @@ require 'json'
 require 'byebug'
 require 'rack/parser'
 require 'dotenv'
+require 'tracker_api'
 require './github_webhook'
+require 'erubis'
 
 module NinjaSeal
   class App < Sinatra::Base
+    set :erb, escape_html: true
+    set :views, 'views'
+
+    tracker = TrackerApi::Client.new(token: ENV['TRACKER_API_TOKEN'])
+
     use Rack::Parser, parsers: {
       'application/json' => -> (data) { JSON.parse(data) }
     }
