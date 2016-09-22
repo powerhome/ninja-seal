@@ -13,6 +13,7 @@ GEM
       uber (>= 0.0.15)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    diff-lcs (1.2.5)
     dotenv (2.0.1)
     equalizer (0.0.11)
     erubis (2.7.0)
@@ -31,9 +32,24 @@ GEM
       rack
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
     representable (3.0.0)
       declarative (~> 0.0.5)
       uber (~> 0.0.15)
+    rspec (3.5.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
+    rspec-core (3.5.3)
+      rspec-support (~> 3.5.0)
+    rspec-expectations (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-mocks (3.5.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-support (3.5.0)
     sawyer (0.7.0)
       addressable (>= 2.3.5, < 2.5)
       faraday (~> 0.8, < 0.10)
@@ -68,6 +84,8 @@ DEPENDENCIES
   erubis (~> 2.7)
   octokit (~> 4.0)
   rack-parser
+  rack-test
+  rspec
   sinatra
   tracker_api (~> 0.2.0)
 
