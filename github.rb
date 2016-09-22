@@ -15,7 +15,7 @@ module NinjaSeal
       head = pull_request['head']
       repository_name = head['repo']['full_name']
       commitish = head['sha']
-      Octokit.client.create_status(repository_name, commitish, :pending, options)
+      Octokit.create_status(repository_name, commitish, :pending, options)
       200
     end
 

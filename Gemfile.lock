@@ -32,6 +32,8 @@ GEM
       rack
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
     representable (3.0.0)
       declarative (~> 0.0.5)
       uber (~> 0.0.15)
@@ -82,6 +84,7 @@ DEPENDENCIES
   erubis (~> 2.7)
   octokit (~> 4.0)
   rack-parser
+  rack-test
   rspec
   sinatra
   tracker_api (~> 0.2.0)

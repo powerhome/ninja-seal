@@ -1,4 +1,16 @@
+require 'rack/test'
+
+ENV['RACK_ENV'] = 'test'
+
+require File.expand_path '../../app.rb', __FILE__
+
+module RackTestMixin
+  include Rack::Test::Methods
+  def app() described_class end
+end
+
 RSpec.configure do |config|
+  config.include RackTestMixin
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end

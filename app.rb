@@ -7,6 +7,11 @@ require 'tracker_api'
 require 'erubis'
 require './github'
 
+Dotenv.load(
+  File.expand_path("../.#{ENV['RACK_ENV']}.env", __FILE__),
+  File.expand_path('../.env', __FILE__)
+)
+
 module NinjaSeal
   class App < Sinatra::Base
     set :erb, escape_html: true
@@ -28,6 +33,6 @@ module NinjaSeal
       erb :stories, locals: { stories: stories }
     end
 
-    run!
+    run! if app_file == $0
   end
 end
