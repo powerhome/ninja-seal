@@ -21,11 +21,11 @@ module NinjaSeal
     use Github
 
     get '/stories' do
-      stories = tracker.projects
-        .map{ |project| project.stories(with_state: :finished) }.flatten
-        .map{ |story| { id: story.id, title: story.name, state: story.current_state }}
+      stories = tracker.projects.map do |project|
+        [project.name, project.stories(with_state: :finished)]
+      end
 
-      erb :stories, locals: { stories: stories }
+      erb :stories, locals: { projects: Hash[stories] }
     end
 
     run!

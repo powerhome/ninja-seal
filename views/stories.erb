@@ -1,18 +1,20 @@
-
 <form method="POST">
-  <ul>
-  <% stories.each do |story|%>
-    <li>
-      <%= "#{story[:title]}"  %>
+  <% projects.each do |project, stories| %>
+    <%= project %>
+    <ul>
+      <% stories.each do |story| %>
+      <li>
+        <%= story.name %>
         <button type="submit"
-          formaction="<%= "/stories/#{story[:id]}/status" %>"
+          formaction="<%= "/stories/#{story.id}/status" %>"
           name="status"
           value="success">Accept</button>
         <button type="submit"
-          formaction="<%= "/stories/#{story[:id]}/status" %>"
+          formaction="<%= "/stories/#{story.id}/status" %>"
           name="status"
           value="failure">Reject</button>
-    </li>
+      </li>
+      <% end %>
+    </ul>
   <% end %>
-  </ul>
 </form>
