@@ -7,10 +7,13 @@ require 'tracker_api'
 require 'erubis'
 require './github'
 
-Dotenv.load(
-  File.expand_path("../.#{ENV['RACK_ENV']}.env", __FILE__),
-  File.expand_path('../.env', __FILE__)
-)
+if ENV.has_key? 'RACK_ENV'
+  env_file = File.expand_path("../.#{ENV['RACK_ENV']}.env", __FILE__)
+else
+  env_file = File.expand_path('../.env', __FILE__)
+end
+
+Dotenv.load env_file
 
 module NinjaSeal
   class App < Sinatra::Base
